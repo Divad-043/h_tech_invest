@@ -1,0 +1,511 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}H_tem_invest dashboard{% endblock %}
+{% block content %}
+
+    <div class="panel-layout">
+    <!--Header-->
+    <div class="panel-header">
+    <div class="logo">
+        <a href="https://trustrade.site">
+            <img class="logo-unfold" src="https://trustrade.site/assets/global/images/W3m9vDkJrQRDf7TOPqK4.png" alt="Logo"/>
+            <img class="logo-fold" src="https://trustrade.site/assets/global/images/W3m9vDkJrQRDf7TOPqK4.png" alt="Logo"/>
+        </a>
+    </div>
+    <div class="nav-wrap">
+        <div class="nav-left">
+
+            <button class="sidebar-toggle">
+                <i class="anticon anticon-arrow-left"></i>
+            </button>
+        </div>
+        <div class="nav-right">
+            <div class="single-nav-right">
+                <a href="https://trustrade.site" class="user-home-menu">
+                    <i class="anticon anticon-home"></i>
+                </a>
+                <div class="single-right">
+                    <div class="color-switcher">
+                        <i icon-name="moon" class="dark-icon" data-mode="dark"></i>
+                        <i icon-name="sun" class="light-icon" data-mode="light"></i>
+                    </div>
+                </div>
+                <div class="single-right">
+                    <select name="language" id="" class="site-nice-select"
+                            onchange="window.location.href=this.options[this.selectedIndex].value;">
+                                                    <option
+                                value="https://trustrade.site/language-update?name=en" selected>English</option>
+                                                    <option
+                                value="https://trustrade.site/language-update?name=fr" >France</option>
+                                            </select>
+                </div>
+                <div class="single-right">
+                    <button
+                        type="button"
+                        class="item"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        <i class="anticon anticon-user"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a href="https://trustrade.site/user/settings" class="dropdown-item" type="button"><i
+                                    class="anticon anticon-setting"></i>Settings</a>
+                        </li>
+                        <li>
+                            <a href="https://trustrade.site/user/change-password" class="dropdown-item" type="button">
+                                <i class="anticon anticon-lock"></i>Change Password
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://trustrade.site/user/support-ticket/index" class="dropdown-item" type="button">
+                                <i class="anticon anticon-customer-service"></i>Support Tickets
+                            </a>
+                        </li>
+                        <li class="logout">
+                            <form method="POST" action="{% url 'accounts:logout' %}" id="logout-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="_token" value="m3z3FEa3b91Ybt4jZBS5T9wbQxzZmg8WH5YukKRh">                                <a href="{% url 'accounts:logout' %}" class="dropdown-item"
+                                   onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();"><i
+                                        class="anticon anticon-logout"></i>Logout</a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--/Header-->
+
+    <!--Side Nav-->
+    <div class="side-nav">
+    <div class="side-nav-inside">
+        <ul class="side-nav-menu">
+            <li class="side-nav-item active">
+                <a href="https://trustrade.site/user/dashboard"><i
+                        class="anticon anticon-appstore"></i><span>Dashboard</span></a>
+            </li>
+
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/schemas"><i
+                        class="anticon anticon-check-square"></i><span>Buy Vip</span></a>
+            </li>
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/invest-logs"><i
+                        class="anticon anticon-copy"></i><span>My Vips</span></a>
+            </li>
+
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/transactions"><i
+                        class="anticon anticon-inbox"></i><span>All Transactions</span></a>
+            </li>
+
+
+            <li class="side-nav-item   ">
+                <a href="https://trustrade.site/user/deposit"><i
+                        class="anticon anticon-file-add"></i><span>Add Money</span></a>
+            </li>
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/deposit/log"><i
+                        class="anticon anticon-folder-add"></i><span>Add Money Log</span></a>
+            </li>
+
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/wallet-exchange"><i
+                        class="anticon anticon-transaction"></i><span>Wallet Exchange</span></a>
+            </li>
+
+            <li class="side-nav-item   ">
+                <a href="https://trustrade.site/user/send-money"><i
+                        class="anticon anticon-export"></i><span>Send Money</span></a>
+            </li>
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/send-money/log"><i
+                        class="anticon anticon-cloud"></i><span>Send Money Log</span></a>
+            </li>
+
+            <li class="side-nav-item   ">
+                <a href="https://trustrade.site/user/withdraw"><i
+                        class="anticon anticon-bank"></i><span>Withdraw</span></a>
+            </li>
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/withdraw/log"><i
+                        class="anticon anticon-credit-card"></i><span>Withdraw Log</span></a>
+            </li>
+
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/ranking-badge"><i
+                        class="anticon anticon-star"></i><span>Ranking Badge</span></a>
+            </li>
+
+                            <li class="side-nav-item ">
+                    <a href="https://trustrade.site/user/referral"><i
+                            class="anticon anticon-usergroup-add"></i><span>Referral</span></a>
+                </li>
+
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/settings"><i
+                        class="anticon anticon-setting"></i><span>Settings</span></a>
+            </li>
+            <li class="side-nav-item ">
+                <a href="https://trustrade.site/user/support-ticket/index"
+                ><i class="anticon anticon-tool"></i><span>Support Tickets</span></a
+                >
+            </li>
+            <li class="side-nav-item">
+                <!-- Authentication -->
+                <form method="POST" action="https://trustrade.site/logout">
+                    <input type="hidden" name="_token" value="m3z3FEa3b91Ybt4jZBS5T9wbQxzZmg8WH5YukKRh">                    <button type="submit" class="site-btn grad-btn w-100">
+                        <i class="anticon anticon-logout"></i><span>Logout</span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+    <!--/Side Nav-->
+
+    <div class="page-container">
+        <div class="main-content">
+            <div class="section-gap">
+                <div class="container-fluid">
+                                        <!--Page Content-->
+
+
+    <div class="row">
+
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+    <div class="side-wallet-box default-wallet mb-0">
+        <div class="user-balance-card">
+            <div class="wallet-name">
+                <div class="name">Account Balance</div>
+                <div class="default">Wallet</div>
+            </div>
+            <div class="wallet-info">
+                <div class="wallet-id"><i icon-name="wallet"></i>Main Wallet</div>
+                <div class="balance">CFA75</div>
+            </div>
+            <div class="wallet-info">
+                <div class="wallet-id"><i icon-name="landmark"></i>Profit Wallet</div>
+                <div class="balance">CFA500</div>
+            </div>
+        </div>
+        <div class="actions">
+            <a href="https://trustrade.site/user/deposit" class="user-sidebar-btn"><i
+                    class="anticon anticon-file-add"></i>Deposit</a>
+            <a href="https://trustrade.site/user/schemas" class="user-sidebar-btn red-btn"><i
+                    class="anticon anticon-export"></i>Invest Now</a>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12" style=" padding-bottom: 16px; ">
+
+
+    <div align="center" class="side-wallet-box default-wallet mb-0">
+
+
+        <div class="user-ranking" >
+            <h4>Level 1</h4>
+            <p>Free</p>
+            <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="By signing up to the account">
+                <img src="https://trustrade.site/assets/global/images/sCQgIyl0OKzFiO73nmWF.svg" alt="">
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="https://play.google.com/store/apps/details?id=com.trustrade.site.app" class="user-sidebar-btn"><i
+                    class="anticon anticon-file-add"></i> Download App</a>
+            <a href="https://chat.whatsapp.com/HRI2W65nBhM3dwqWzGAWgv" class="user-sidebar-btn red-btn"><i
+                    class="anticon anticon-export"></i>Whatsapp Group</a>
+
+        </div>
+    </div>
+
+    </div>
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="site-card">
+                <div class="site-card-header">
+                    <h3 class="title">Referral URL</h3>
+                </div>
+                <div class="site-card-body">
+                    <div class="referral-link">
+                        <div class="referral-link-form">
+                            <input type="text" value="https://trustrade.site/register?ref=8a746904-9131-11ed-a2ae-e3f7e1cff23d" id="refLink"/>
+                            <button type="submit" onclick="copyRef()">
+                                <i class="anticon anticon-copy"></i>Copy URL
+                            </button>
+                        </div>
+                        <p class="referral-joined">
+                            0 peoples are joined by using this URL
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+<div class="row mb-4">
+    <div class="col-md-4"> </div>
+    <div class="col-md-4" style="text-align:center;">
+        <form action="https://trustrade.site/user/withdraw/now" method="post">
+                            <input type="hidden" name="_token" value="m3z3FEa3b91Ybt4jZBS5T9wbQxzZmg8WH5YukKRh">
+
+                            <div class="buttons">
+                               <a type="button" id="bonus" class="btn btn-danger btn-raised btn-lg">You can claim daily rewards after:</a
+                            </div>
+                        </form>
+    </div>
+    <div class="col-md-4"> </div>
+</div>
+
+       <script>
+           var countDownDate = new Date("Jan 11, 2023  22:08:40").getTime();
+           var x = setInterval(function() {
+               var now = new Date("Jan 12, 2023  05:03:18").getTime();
+               var distance = countDownDate - now;
+               var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+               var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+               var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+               var confirmButton = document.getElementById("bonus");
+               confirmButton.innerHTML = "You can claim daily rewards after: "+ hours + " Hours " + minutes + " Minutes " + seconds + " Second Later";
+               if (distance < 0) {
+                   clearInterval(x);
+                   confirmButton.className = "btn btn-success btn-raised btn-lg";
+                   confirmButton.innerHTML = "Claim Your Rewards Now";
+                   confirmButton.setAttribute('href','https://trustrade.site/user/daily/rewards');
+               }
+           }, 1000);
+       </script>
+   </div>
+
+
+    <div class="row user-cards">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-inbox"></i></div>
+            <div class="content">
+                <h4><span class="count">1</span></h4>
+                <p>All Transactions</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-file-add"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span></h4>
+                <p>Total Deposit</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-check-square"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span></h4>
+                <p>Total Investment</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-credit-card"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">500</span></h4>
+                <p>Total Profit</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-arrow-right"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span></h4>
+                <p>Total Transfer </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-money-collect"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span></h4>
+                <p>Total Withdraw</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-gift"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span>
+                </h4>
+                <p>Referral Bonus</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-account-book"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span></h4>
+                <p>Deposit Bonus</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-gold"></i></div>
+            <div class="content">
+                <h4><b>CFA</b><span class="count">0</span></h4>
+                <p>Investment Bonus</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-inbox"></i></div>
+            <div class="content">
+                <h4 class="count">0</h4>
+                <p>Total Referral</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-radar-chart"></i></div>
+            <div class="content">
+                <h4 class="count">1</h4>
+                <p>Rank Achieved</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="single">
+            <div class="icon"><i class="anticon anticon-question"></i></div>
+            <div class="content">
+                <h4 class="count">0</h4>
+                <p>Total Ticket</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="row">
+    <div class="col-xl-12">
+        <div class="site-card">
+            <div class="site-card-header">
+                <h3 class="title">Recent Transactions</h3>
+            </div>
+            <div class="site-card-body table-responsive">
+                <div class="site-datatable">
+                    <table class="display data-table">
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Transactions ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Fee</th>
+                            <th>Status</th>
+                            <th>Gateway</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                                    <tr>
+                                <td>
+                                    <div class="table-description">
+                                        <div class="icon">
+                                            <i icon-name="backpack
+                                         ">
+                                            </i>
+                                        </div>
+
+
+                                        <div class="description">
+                                            <strong>Signup Bonus                                             </strong>
+                                            <div class="date">Jan 10 2023 09:55</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><strong>TRXWZJDDXFR7W</strong></td>
+                                <td>
+                                    <div
+                                        class="site-badge primary-bg">Signup bonus</div>
+                                </td>
+
+                                <td><strong
+                                        class="green-color">+500 XAF</strong>
+                                </td>
+                                <td><strong>0 XAF</strong></td>
+                                <td>
+
+
+                                                                            <div class="site-badge success">Success</div>
+                                                                    </td>
+                                <td><strong>System</strong></td>
+                            </tr>
+
+
+                                                </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    <!--Page Content-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Automatic Popup -->
+
+    <!-- /Automatic Popup End -->
+</div>
+
+{% endblock %}
+{% block others_scripts %}
+
+    <script>
+        (function ($) {
+            'use strict';
+            // AOS initialization
+            AOS.init();
+        })(jQuery);
+    </script>
+
+
+
+<script type="text/javascript" src="{% static 'assets/vendor/mckenziearts/laravel-notify/js/notify.js' %}"></script>     <script>
+        function copyRef() {
+            /* Get the text field */
+            var copyApi = document.getElementById("refLink");
+            /* Select the text field */
+            copyApi.select();
+            copyApi.setSelectionRange(0, 99999); /* For mobile devices */
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyApi.value);
+            /* Alert the copied text */
+            alert("Copied the Referral Key: " + copyApi.value);
+        }
+    </script>
+    <script>
+        // Color Switcher
+        $(".color-switcher").on('click', function () {
+            "use strict"
+            $("body").toggleClass("dark-theme");
+            var url = 'https://trustrade.site/theme-mode';
+            $.get(url)
+        });
+    </script>
+
+{% endblock %}
