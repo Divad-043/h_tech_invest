@@ -19,11 +19,29 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone', 'country']
     USERNAME_FIELD = 'email'
 
+    def __str__(self) -> str:
+        return self.get_full_name()
 
-class UserInfos(models.Model):
+
+class UserInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_ass')
     added_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     ref_code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    total_amount = models.PositiveBigIntegerField(default=0)
-    total_benefic_amount = models.PositiveBigIntegerField(default=0)
+    total_amount = models.PositiveIntegerField(default=0)
+    total_referral_amount = models.PositiveIntegerField(default=0)
+    total_amount_deposit = models.PositiveIntegerField(default=0)
+    total_amount_withdraw = models.PositiveIntegerField(default=0)
+    # total_referal = models.PositiveIntegerField(default=0)
+
+    def __str__(self) -> str:
+        return self.user
+
+    def getTotalNumberOfParterns(self):
+        pass
+
+    def getTotalEarned(self):
+        pass
+
+    def getNumberOfClickOnTheReferralLink(self):
+        return UserInformation.objects.filter(added_by=self.user).count()
 

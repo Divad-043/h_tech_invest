@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.middleware.page',
 ]
 
 ROOT_URLCONF = 'h_tem_invest.urls'
@@ -116,9 +117,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static'
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -126,8 +127,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'users:dashboard'
+LOGOUT_REDIRECT_URL = 'accounts:login'
 LOGIN_URL = '/accounts/login'
 
 

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, get_user_model
-from .models import UserInfos
+from .models import UserInformation
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 
@@ -27,7 +27,7 @@ class RegistrationForm(UserCreationForm):
         data = self.cleaned_data['ref_code']
         user = get_user_model()
         try:
-            UserInfos.objects.get(ref_code=data)
+            UserInformation.objects.get(ref_code=data)
         except ObjectDoesNotExist:
             raise ValidationError("Invalid Code. Enter a valid code", code='invalid_code')
         return data

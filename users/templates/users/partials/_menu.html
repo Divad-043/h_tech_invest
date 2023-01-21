@@ -1,0 +1,23 @@
+<ul class="dashboard-menu">
+    <li>
+        <a href="{% url 'users:dashboard' %}" class={% if page == 'dashboard' %}"active"{% else %} {%endif%}><i class="flaticon-man"></i>Dashboard</a>
+    </li>
+    <li>
+        <a href="{% url 'users:transactions' %}" class={% if page == 'transactions' %}"active"{% else %} {%endif%}><i class="flaticon-coin"></i>Transactions</a>
+    </li>
+    <li>
+        <a href="{% url 'users:deposit' %}" class={% if page == 'deposit' %}"active"{% else %} {%endif%}><i class="flaticon-interest"></i>Deposits</a>
+    </li>
+    <li>
+        <a href="{% url 'users:withdraw' %}" class={% if page == 'withdraw' %}"active"{% else %} {%endif%}><i class="flaticon-atm"></i>Withdraw</a>
+    </li>
+    <li>
+        <a href="{% url 'users:partners' %}" class={% if page == 'partners' %}"active"{% else %} {%endif%}><i class="flaticon-deal"></i>Partners</a>
+    </li>
+    <li>
+        <a href="{% url 'users:settings' %}" class={% if page == 'settings' %}"active"{% else %} {%endif%}><i class="flaticon-gears"></i>Settings</a>
+    </li>
+    <li>
+        <a href="{% url 'accounts:logout' %}"><i class="flaticon-right-arrow"></i>Logout</a>
+    </li>
+</ul>

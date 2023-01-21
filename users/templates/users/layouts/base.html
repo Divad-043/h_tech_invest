@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'users/partials/_header.html' %}
+<body>
+
+    <div class="main--body dashboard-bg">
+        {% include 'users/partials/_loader_div.html' %}
+        <div class="notify-overlay"></div>
+        <div class="notify-overlay"></div>
+        <section class="dashboard-section">
+            {% include 'users/partials/_dashboard_section.html' %}
+            <div class="dasboard-body">
+                {% include 'users/partials/_dashboard_top.html' %}
+
+                <div class="container-fluid">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+
+                {% include 'users/partials/_footer.html' %}
+                
+            </div>
+        </section>
+
+    </div>
+
+  {% include 'users/partials/_scripts.html' %}
+
+  {% include 'users/partials/_loader_script.html' %}
+
+  {% block others_scripts %} 
+
+  {% endblock %}
+</body>
+</html>

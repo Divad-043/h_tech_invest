@@ -5,7 +5,7 @@ import uuid
 
 def register(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('users:dashboard')
     form = RegistrationForm()
     invite_code = ""
     try:
@@ -18,8 +18,8 @@ def register(request):
         if form.is_valid():
             user = form.save()
             code = request.POST['ref_code']
-            user_invite_code = UserInfos.objects.get(ref_code=code).user
-            user_info = UserInfos(user=user, added_by=user_invite_code, ref_code=uuid.uuid4())
+            user_invite_code = UserInformation.objects.get(ref_code=code).user
+            user_info = UserInformation(user=user, added_by=user_invite_code, ref_code=uuid.uuid4())
             user_info.save()
-            return redirect('home')
+            return redirect('users:dashboard')
     return render(request, 'registration/register.html', {'form': form, 'invite_code': invite_code})

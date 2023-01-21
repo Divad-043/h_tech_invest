@@ -1,0 +1,17 @@
+{% load static %}
+<div class="side-header oh">
+    <div class="cross-header-bar d-xl-none">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="site-header-container">
+        <div class="side-logo">
+            <a href="dashboard.html">
+                <img src="{% static 'assets/images/logo/logo.png' %}" alt="logo">
+            </a>
+        </div>
+        {% include 'users/partials/_menu.html' %}
+
+    </div>
+</div>
