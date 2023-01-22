@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from accounts.models import UserInformation
 
 page = ""
 
 @login_required
 def dashboard(request):
-    return render(request, 'users/dashboard.html', {'page': 'dashboard'})
+    user_infos = UserInformation.objects.get(user=request.user).getTotalNumberOfParternsByLevel(level=2)
+    print(user_infos)
+    return render(request, 'users/dashboard.html', {'page': 'dashboard', 'user_infos': user_infos})
 
 
 @login_required

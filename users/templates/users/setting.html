@@ -59,12 +59,12 @@
             </div>
         </div>
         <div class="partners">
-            <h3 class="main-title">Settings</h3>
+            <h4 class="main-title">Settings</h4>
             <div class="row mb-30-none">
                 <div class="col-lg-6 mb-30">
                     <div class="create_wrapper mw-100">
                         <h5 class="subtitle">Personal Info</h5>
-                        <div class="d-flex align-items-center mb-30">
+                        <!-- <div class="d-flex align-items-center mb-30">
                             <div class="update_user">
                                 <img src="{% static 'assets/images/dashboard/user.png' %}" alt="dashboard">
                             </div>
@@ -73,39 +73,39 @@
                                 <label for="update_profile" class="custom-button m-0 mt-2 lh-40 h-40">Browse Image</label>
                                 <input type="file" id="update_profile" class="profile_update_input">
                             </div>
-                        </div>
+                        </div> -->
                         <form class="create_ticket_form row mb-30-none">
                             <div class="create_form_group col-sm-12">
-                                <label for="account_name">Account Name:</label>
-                                <input type="text" id="account_name" placeholder="Account Name">
+                                <label for="account_name">First Name:</label>
+                                <input type="text" id="account_name" placeholder="First Name" name="first_name" value="{{ request.user.first_name }}">
                             </div>
                             <div class="create_form_group col-sm-12">
-                                <label for="full_name">Full Name:</label>
-                                <input type="text" id="full_name" placeholder="Full Name">
+                                <label for="last_name">Last Name:</label>
+                                <input type="text" id="last_name" placeholder="Last Name" name="last_name" value="{{ request.user.last_name }}">
                             </div>
                             <div class="create_form_group col-sm-12">
                                 <label for="account_email">Your Email Address:</label>
-                                <input type="text" id="account_email" placeholder="Enter your Email">
+                                <input type="email" id="account_email" placeholder="Enter your Email"  name="email" value="{{ request.user.email }}">
                             </div>
                             <div class="create_form_group col-sm-12">
                                 <label for="account_mobile">Mobile No:</label>
-                                <input type="text" id="account_mobile" placeholder="Enter your Mobile No">
+                                <input type="text" id="account_mobile" placeholder="Enter your Mobile No"  name="phone" value="{{ request.user.phone }}">
                             </div>
-                            <div class="create_form_group col-sm-12">
+                            <!-- <div class="create_form_group col-sm-12">
                                 <label for="account_address">Address:</label>
                                 <input type="text" id="account_address" placeholder="Enter Address">
-                            </div>
-                            <div class="create_form_group col-sm-6">
+                            </div> -->
+                            <!-- <div class="create_form_group col-sm-6">
                                 <label for="account_city">City:</label>
                                 <input type="text" id="account_city" placeholder="Enter your City">
-                            </div>
-                            <div class="create_form_group col-sm-6">
+                            </div> -->
+                            <!-- <div class="create_form_group col-sm-6">
                                 <label for="account_state">State</label>
                                 <input type="text" id="account_state" placeholder="Enter your State">
-                            </div>
-                            <div class="create_form_group col-sm-6">
+                            </div> -->
+                            <div class="create_form_group col-sm-12">
                                 <label for="country_name">Country:</label>
-                                <input type="text" id="country_name" placeholder="Enter your Country">
+                                <input type="text" id="country_name" placeholder="Enter your Country"  name="country" value="{{ request.user.country }}">
                             </div>
                             <div class="create_form_group col-sm-6 align-self-end">
                                 <button type="submit" class="custom-button border-0">Save</button>
@@ -151,28 +151,6 @@
                             </div>
                         </form>
                     </div>
-
-                    <!-- <div class="create_wrapper mw-100">
-                        <h5 class="subtitle">Change Passowrd</h5>
-                        <form class="create_ticket_form row mb-30-none">
-                            <div class="create_form_group col-sm-12">
-                                <label for="old_pass">Old Passowrd:</label>
-                                <input type="password" id="old_pass" placeholder="Enter your Old Password">
-                            </div>
-                            <div class="create_form_group col-sm-12">
-                                <label for="new_pass">New password::</label>
-                                <input type="password" id="new_pass" placeholder="Enter your new password:">
-                            </div>
-                            <div class="create_form_group col-sm-12">
-                                <label for="repeat_pass">Repeat the new password::</label>
-                                <input type="password" id="repeat_pass" placeholder="Repeat your new password:">
-                            </div>
-                            <div class="create_form_group col-sm-6 align-self-end">
-                                <button type="submit" class="custom-button border-0">Save</button>
-                            </div>
-                        </form>
-                    </div> -->
-
                 </div>
                 
                 <div class="col-lg-6 mb-30">
@@ -199,5 +177,7 @@
                 </div>
             </div>
         </div>
+
+    </div>
     
 {% endblock %}

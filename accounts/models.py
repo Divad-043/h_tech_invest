@@ -25,19 +25,29 @@ class User(AbstractUser):
 
 class UserInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_ass')
-    added_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    added_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="mentor")
     ref_code = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     total_amount = models.PositiveIntegerField(default=0)
     total_referral_amount = models.PositiveIntegerField(default=0)
     total_amount_deposit = models.PositiveIntegerField(default=0)
     total_amount_withdraw = models.PositiveIntegerField(default=0)
-    # total_referal = models.PositiveIntegerField(default=0)
+    first_son = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, related_name="first_son", blank=True)
+    first_youngest_brother = models.OneToOneField(User, null=True, on_delete=models.SET_NULL, blank=True)
 
     def __str__(self) -> str:
-        return self.user
+        return self.user.get_full_name()
 
-    def getTotalNumberOfParterns(self):
-        pass
+    def getTotalNumberOfParternsByLevel(self, level):
+        if level > 0:
+            if level == 1:
+                nb = 1
+            else:
+                ac = self.first_son
+                nb = 0
+                while ac != None:
+                    nb = nb + ac.user_ass.getTotalNumberOfParternsByLevel(level-1)
+                    ac = ac.user_ass.first_youngest_brother
+            return  nb
 
     def getTotalEarned(self):
         pass

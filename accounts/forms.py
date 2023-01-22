@@ -17,20 +17,20 @@ class RegistrationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
         strip=False,
     )
-    ref_code = forms.UUIDField()
+    # ref_code = forms.UUIDField()
 
     class Meta:
         model = get_user_model()
         fields = ('first_name', 'last_name', 'email', 'username', 'country', 'phone')
 
-    def clean_ref_code(self):
-        data = self.cleaned_data['ref_code']
-        user = get_user_model()
-        try:
-            UserInformation.objects.get(ref_code=data)
-        except ObjectDoesNotExist:
-            raise ValidationError("Invalid Code. Enter a valid code", code='invalid_code')
-        return data
+    # def clean_ref_code(self):
+    #     data = self.cleaned_data['ref_code']
+    #     user = get_user_model()
+    #     try:
+    #         UserInformation.objects.get(ref_code=data)
+    #     except ObjectDoesNotExist:
+    #         raise ValidationError("Invalid Code. Enter a valid code", code='invalid_code')
+    #     return data
 
 
 class LoginForm(forms.Form):
