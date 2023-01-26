@@ -1,8 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, get_user_model
-from .models import UserInformation
+from .models import Partner, User
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 
@@ -17,30 +17,68 @@ class RegistrationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
         strip=False,
     )
-    # ref_code = forms.UUIDField()
 
     class Meta:
         model = get_user_model()
         fields = ('first_name', 'last_name', 'email', 'username', 'country', 'phone')
 
-    # def clean_ref_code(self):
-    #     data = self.cleaned_data['ref_code']
-    #     user = get_user_model()
-    #     try:
-    #         UserInformation.objects.get(ref_code=data)
-    #     except ObjectDoesNotExist:
-    #         raise ValidationError("Invalid Code. Enter a valid code", code='invalid_code')
-    #     return data
+
+class CodeForm(forms.Form):
+    ref_code = forms.UUIDField()
+
+    def clean_ref_code(self):
+        data = self.cleaned_data['ref_code']
+        try:
+            User.objects.get(ref_code=data)
+        except ObjectDoesNotExist:
+            raise ValidationError("Invalid Code. Enter a valid code", code='invalid_code')
+        return data
+
+
+class AdminAddForm(UserCreationForm):
+
+    # def __init__(self, user, *args, **kwargs):
+    #     self.user = user
+    #     super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = get_user_model()
+        fields = ('first_name', 'last_name', 'email', 'username', 'country', 'phone')
+
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     user.set_password(self.cleaned_data["password1"])
+    #     if commit:
+    #         user.save()
+    #         if self.user.user_partner.first_partern_added == None and self.user.user_partner.last_partern_added == None:
+    #             self.user.user_partner.first_partern_added = user
+    #             self.user.user_partner.last_partern_added = user
+    #         else:
+    #             last_user_partern_added = self.user.user_partner.last_partern_added
+    #             last_user_partern_added.user_partner.next_youngest_brother = user
+    #         partner = Partner(user=user)
+    #         print("ok")
+    #         partner.save()
+    #     return user
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email', 'phone', 'country']
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(
+        error_messages={
+            "invalid_email": "Enter a valid email"
+        }
+    )
     password = forms.CharField(
         label="Password",
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}),
     )
-
     error_messages = {
         "invalid_login": (
             "Please enter a correct email and password."
@@ -56,7 +94,6 @@ class LoginForm(forms.Form):
     def clean(self):
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
-
         if email is not None and password:
             self.user_cache = authenticate(
                 self.request, username=email, password=password
@@ -65,7 +102,6 @@ class LoginForm(forms.Form):
                 raise self.get_invalid_login_error()
             else:
                 self.confirm_login_allowed(self.user_cache)
-
         return self.cleaned_data
 
     def confirm_login_allowed(self, user):

@@ -1,81 +1,59 @@
-{% extends 'layouts/base.html' %}
 {% load static %}
-{% block title %}H_tem_invest Login{% endblock %}
-{% block content %}
-    <section class="section-style site-auth">
+<!DOCTYPE html>
+<html lang="en">
+{% include 'users/partials/_header.html' %}
+
+<body>
+
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!--============= Sign In Section Starts Here =============-->
+    <div class="account-section bg_img" data-background="{% static 'assets/images/account-bg.jpg' %}">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-5 col-lg-8 col-md-12">
-                    <div class="auth-content">
-                        <div class="logo">
-                            <!-- <a href="index.html"><img src="{% static 'accounts/assets/global/images/W3m9vDkJrQRDf7TOPqK4.png' %}" alt=""/></a> -->
-                            <a href="index.html"><img src="{% static 'assets/global/images/ressources.png' %}" alt=""/></a>
+            <div class="account-title text-center">
+                <a href="index.html" class="back-home"><i class="fas fa-angle-left"></i><span>Back <span class="d-none d-sm-inline-block">To Hyipland</span></span></a>
+                <a href="#0" class="logo">
+                    <img src="{% static 'assets/images/logo/footer-logo.png' %}" alt="logo">
+                </a>
+            </div>
+            <div class="account-wrapper">
+                <div class="account-body">
+                    <h4 class="title mb-20">Welcome To H_tem_invest</h4>
+                    {% if form.errors %}
+                        <div class="alert-danger">{{ form.non_field_errors }}</div>
+                    {% endif %}
+                    {% if field in form %}
+                        <div class="alert-danger">{{ form.errors }}</div>
+                    {% endif %}
+                    <form class="account-form" method="POST" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="sign-up">Your Email </label>
+                            <input type="email" placeholder="Enter Your Email " id="sign-up" name="email" required>
                         </div>
-                        <div class="title">
-                            <h2> 👋 Welcome Back!</h2>
-                            <p>Sign in to continue with H_tem_winner User Panel</p>
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input type="password" placeholder="Enter Your Password" id="pass" name="password" required>
+                            <span class="sign-in-recovery text-center mt-5">Forgot your password? <a href="#0">recover password</a></span>
                         </div>
-
-
-                        <div class="site-auth-form">
-                            {% if form.errors %}
-<!--                                <div class="alert-danger text-center mb-3">{{message}}</div>-->
-                                    {{ form.non_field_errors }}
-                            {% endif %}
-                            <form method="POST" action="{% url 'accounts:login' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="_token" value="Agjau3ezegZxPz29AhgZWagd6IqlkfzjxYVCXjbj">                                <div class="single-field">
-                                    <label class="box-label" for="email">Email Or Username</label>
-                                    <input
-                                        class="box-input"
-                                        type="text"
-                                        name="email"
-                                        placeholder="Enter your email address or username"
-                                        required
-                                    />
-                                </div>
-                                <div class="single-field">
-                                    <label class="box-label" for="password">Password</label>
-                                    <div class="password">
-                                        <input
-                                            class="box-input"
-                                            type="password"
-                                            name="password"
-                                            placeholder="Enter your password"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-
-
-                                <div class="single-field">
-                                    <input
-                                        class="form-check-input check-input"
-                                        type="checkbox"
-                                        name="remember"
-                                        id="flexCheckDefault"
-                                    />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Remember me
-                                    </label>
-
-                                                                            <span class="forget-pass-text"><a
-                                                href="{% url 'accounts:password_reset' %}">Forget Password</a></span>
-                                                                    </div>
-                                <button type="submit" class="site-btn grad-btn w-100">
-                                    Account Login
-                                </button>
-                            </form>
-                            <div class="singnup-text">
-                                <p>
-                                    Don&#039;t have an account?
-                                    <a href="{% url 'accounts:register' %}">Signup for free</a>
-                                </p>
-                            </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="mt-2 mb-2">Sign In</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-{% endblock %}
+    </div>
+    {% include 'users/partials/_scripts.html' %}
+
+
+</body>
+
+</html>

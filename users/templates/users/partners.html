@@ -72,7 +72,7 @@
                                     <div class="copy-button">
                                         <a href="#0" class="custom-button" id="copy">Copy Link</a>
                                     </div>
-                                    <input type="text" id="copyLinks" readonly value="https://hyipland.com/?ref=jhondoe24">
+                                    <input type="text" id="copyLinks" readonly value="{{ protocol }}://{{ domain }}/accounts/register/?inviteCode={{ request.user.ref_code}}">
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="cont">
                                             <span class="cl-4">Active :</span>
-                                            <span class="cl-1">40</span>
+                                            <span class="cl-1">{{ active_partner|length|default:0 }}</span>
                                         </div>
                                     </li>
                                     <li>
@@ -153,12 +153,12 @@
                                         </div>
                                         <div class="cont">
                                             <span class="cl-4">Inactive :</span>
-                                            <span class="cl-1">05</span>
+                                            <span class="cl-1">{{ inactive_partner|default:0 }}</span>
                                         </div>
                                     </li>
                                 </ul>
                                 <div class="total-partner">
-                                    <span class="total-title">45</span>
+                                    <span class="total-title">{{partners|length|default:0}}</span>
                                     <span>Total</span>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                             <div class="earn-content">
                                 <h6 class="title">Number of clicks on the referral link</h6>
                                 <div class="click-number">
-                                    10
+                                    {{first_level_user}}
                                 </div>
                             </div>
                         </div>
@@ -237,32 +237,37 @@
                                 <th>Level</th>
                                 <th>Username</th>
                                 <th>E-mail</th>
-                                <th>payment method</th>
-                                <th>Invested</th>
+                                <!-- <th>payment method</th> -->
+                                <!-- <th>Invested</th> -->
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            {% for partner in partners %}
                             <tr>
                                 <td>
-                                    <i class="far fa-calendar"></i> Feb 14, 2020 20:53
+                                    <i class="far fa-calendar"></i> {{partner.date_joined}}
                                 </td>
                                 <td>
                                     Level1
                                 </td>
                                 <td>
-                                    Austin 984
+                                    {{partner}}
                                 </td>
                                 <td>
-                                    <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="edd4d5d9ad8a808c8481c38e8280">[email&#160;protected]</span></a>
+                                    <a href="Mailto:{{partner.email}}">{{partner.username}} <span class="__cf_email__" data-cfemail="edd4d5d9ad8a808c8481c38e8280">[email&#160;protected]</span></a>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <img src="{% static 'assets/images/dashboard/earn/btc2.png' %}" alt="dashboard-earn"> BTC
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     0.000591
-                                </td>
+                                </td> -->
                             </tr>
-                            <tr>
+                            {% endfor %}
+                                
+                            
+                            <!-- <tr>
                                 <td>
                                     <i class="far fa-calendar"></i> Feb 14, 2020 20:53
                                 </td>
@@ -274,14 +279,14 @@
                                 </td>
                                 <td>
                                     <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="350c0d01755258545c591b565a58">[email&#160;protected]</span></a>
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     <img src="{% static 'assets/images/dashboard/earn/dash2.png' %}" alt="dashboard-earn"> BTC
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     0.000591
-                                </td>
-                            </tr>
+                                </td> -->
+                            <!-- </tr>
                             <tr>
                                 <td>
                                     <i class="far fa-calendar"></i> Feb 14, 2020 20:53
@@ -294,14 +299,14 @@
                                 </td>
                                 <td>
                                     <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="655c5d51250208040c094b060a08">[email&#160;protected]</span></a>
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     <img src="{% static 'assets/images/dashboard/earn/eth3.png' %}" alt="dashboard-earn"> BTC
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     0.000591
-                                </td>
-                            </tr>
+                                </td> -->
+                            <!-- </tr>
                             <tr>
                                 <td>
                                     <i class="far fa-calendar"></i> Feb 14, 2020 20:53
@@ -314,14 +319,14 @@
                                 </td>
                                 <td>
                                     <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="370e0f0377505a565e5b1954585a">[email&#160;protected]</span></a>
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     <img src="{% static 'assets/images/dashboard/earn/eth2.png' %}" alt="dashboard-earn"> BTC
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     0.000591
-                                </td>
-                            </tr>
+                                </td> -->
+                            <!-- </tr>
                             <tr>
                                 <td>
                                     <i class="far fa-calendar"></i> Feb 14, 2020 20:53
@@ -334,14 +339,14 @@
                                 </td>
                                 <td>
                                     <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="1a23222e5a7d777b737634797577">[email&#160;protected]</span></a>
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     <img src="{% static 'assets/images/dashboard/earn/btc2.png' %}" alt="dashboard-earn"> BTC
-                                </td>
-                                <td>
+                                </td> -->
+                                <!-- <td>
                                     0.000591
-                                </td>
-                            </tr>
+                                </td> -->
+                            <!-- </tr> -->
                         </tbody>
                     </table>
                 </div>

@@ -123,8 +123,12 @@
                 <div class="deposit-system">
                     <h5 class="main-subtitle">02. Enter the amount of Deposit:</h5>
                     <form class="make-deposit">
+                        {% csrf_token %}
                         <div class="form-group">
                             <input type="text" placeholder="Enter your amount" class="make-amount">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="dropzone">
                         </div>
                         <div class="form-group">
                             <label for="total-profit">Total Profit</label>

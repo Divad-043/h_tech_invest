@@ -32,4 +32,7 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(),
         name="password_reset_complete",
     ),
+    path("update_user/", views.updateUser, name="update-user"),
+    path("update_password/", views.update_password, name="update_password"),
+    path("update_user_payment_system/", views.update_user_payment_system, name="update_user_payment_system"),
 ]

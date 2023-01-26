@@ -2,60 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="row justify-content-center mt--85">
-        <div class="col-sm-6 col-lg-3">
-            <div class="dashboard-item">
-                <div class="dashboard-inner">
-                    <div class="cont">
-                        <span class="title">Balance</span>
-                        <h5 class="amount">{{request.user.user_ass.total_amount}} FCFA</h5>
-                    </div>
-                    <div class="thumb">
-                        <img src="{% static 'assets/images/dashboard/dashboard1.png' %}" alt="dasboard">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="dashboard-item">
-                <div class="dashboard-inner">
-                    <div class="cont">
-                        <span class="title">Balance</span>
-                        <h5 class="amount">0 BTC</h5>
-                    </div>
-                    <div class="thumb">
-                        <img src="{% static 'assets/images/dashboard/dashboard2.png' %}" alt="dasboard">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="dashboard-item">
-                <div class="dashboard-inner">
-                    <div class="cont">
-                        <span class="title">Balance</span>
-                        <h5 class="amount">0 ETH</h5>
-                    </div>
-                    <div class="thumb">
-                        <img src="{% static 'assets/images/dashboard/dashboard3.png' %}" alt="dasboard">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="dashboard-item">
-                <div class="dashboard-inner">
-                    <div class="cont">
-                        <span class="title">Balance</span>
-                        <h5 class="amount">0 XRP</h5>
-                    </div>
-                    <div class="thumb">
-                        <img src="{% static 'assets/images/dashboard/dashboard4.png' %}" alt="dasboard">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'users/partials/_prices.html' %}
     <div class="row pb-30">
         <div class="col-xl-6">
             <div class="earn-item mb-30">
@@ -119,7 +66,7 @@
                             </div>
                             <div class="cont">
                                 <span class="cl-4">Active :</span>
-                                <span class="cl-1">40</span>
+                                <span class="cl-1">{{ active_partner|length|default:0 }}</span>
                             </div>
                         </li>
                         <li>
@@ -128,12 +75,12 @@
                             </div>
                             <div class="cont">
                                 <span class="cl-4">Inactive :</span>
-                                <span class="cl-1">05</span>
+                                <span class="cl-1">{{ inactive_partner|default:0 }}</span>
                             </div>
                         </li>
                     </ul>
                     <div class="total-partner">
-                        <span class="total-title">{{user_infos}}</span>
+                        <span class="total-title">{{partners|length|default:0}}</span>
                         <span>Total</span>
                     </div>
                 </div>
@@ -293,7 +240,7 @@
                     <ul class="mb--5">
                         <li>
                             <div class="cont w-100 p-0">
-                                <span class="cl-1">Adrian54</span>
+                                <span class="cl-1">{{request.user.user_partner.first_partern_added}}</span>
                                 <a href="Mailto:demo@mail.com" class="cl-4">Email: <span class="__cf_email__" data-cfemail="f59190989ab598949c99db969a98">[email&#160;protected]</span></a>
                             </div>
                         </li>
