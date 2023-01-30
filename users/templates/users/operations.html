@@ -55,7 +55,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            
+                            {% for transaction in user_transactions %}
+                                <tr>
+                                    <td>
+                                        <i class="far fa-calendar"></i> {{transaction.date}}
+                                    </td>
+                                    <td>
+                                        {{transaction.operation}}
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/dashboard/earn/btc2.png" alt="dashboard-earn"> {{payment_method}}
+                                    </td>
+                                    <td>
+                                        {{transaction.amount}}
+                                    </td>
+                                    <td>
+                                        {{transaction.status}}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <!-- <tr>
                                 <td>
                                     <i class="far fa-calendar"></i> Feb 14, 2020 20:53
                                 </td>
@@ -71,24 +91,7 @@
                                 <td>
                                     Prepeared
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <i class="far fa-calendar"></i> Feb 14, 2020 20:53
-                                </td>
-                                <td>
-                                    Add funds
-                                </td>
-                                <td>
-                                    <img src="assets/images/dashboard/earn/btc2.png" alt="dashboard-earn"> BTC
-                                </td>
-                                <td>
-                                    0.000591
-                                </td>
-                                <td>
-                                    Prepeared
-                                </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>

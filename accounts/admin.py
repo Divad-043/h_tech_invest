@@ -22,6 +22,24 @@ class User(AdminUser):
                 ),
             },
         ),
+        (
+            'Amount',
+            {
+                "fields": (
+                    'total_amount_xaf',
+                    'total_referral_amount_xaf',
+                    'total_amount_eth',
+                    'total_referral_amount_eth',
+                    'total_amount_tron',
+                    'total_referral_amount_tron',
+                    'total_amount_usdt',
+                    'total_referral_amount_usdt',
+                    'total_amount_bonus_sub',
+                    'total_amount_deposit',
+                    'total_amount_withdraw'
+                )
+            }
+        ),
         (("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
     add_fieldsets = (
@@ -29,11 +47,11 @@ class User(AdminUser):
             None,
             {
                 "classes": ("wide",),
-                "fields": ('first_name', 'last_name', 'email', 'username', 'country', 'phone', "password1", "password2"),
+                "fields": ('first_name', 'last_name', 'email', 'username', 'country', 'phone', 'added_by', "password1", "password2"),
             },
         ),
     )
-    add_form = AdminAddForm()
+    add_form = AdminAddForm
 
 
 @admin.register(Partner)

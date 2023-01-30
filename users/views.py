@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import Partner, User
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
+from transactions.models import Transaction
 
 page = ""
 
@@ -23,7 +24,13 @@ def dashboard(request):
 
 @login_required
 def transactions(request):
-    return render(request, 'users/operations.html', {'page': 'transactions'})
+    user = request.user
+    user_transactions = Transaction.objects.filter(user=user)
+    context = {
+        'page': 'transactions',
+        'user_transactions': user_transactions
+    }
+    return render(request, 'users/operations.html', context)
 
 
 @login_required

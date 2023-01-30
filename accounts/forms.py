@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import authenticate, get_user_model, password_validation
 from .models import Partner, User
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
@@ -35,31 +35,51 @@ class CodeForm(forms.Form):
         return data
 
 
-class AdminAddForm(UserCreationForm):
+class AdminAddForm(forms.ModelForm):
 
     # def __init__(self, user, *args, **kwargs):
     #     self.user = user
     #     super().__init__(*args, **kwargs)
 
+    error_messages = {
+        "password_mismatch": "The two password fields didn’t match.",
+    }
+    password1 = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    password2 = forms.CharField(
+        label="Password confirmation",
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+        help_text="Enter the same password as before, for verification.",
+    )
+
     class Meta:
         model = get_user_model()
-        fields = ('first_name', 'last_name', 'email', 'username', 'country', 'phone')
+        fields = ('first_name', 'last_name', 'email', 'username', 'country', 'phone', 'added_by')
 
-    # def save(self, commit=True):
-    #     user = super().save(commit=False)
-    #     user.set_password(self.cleaned_data["password1"])
-    #     if commit:
-    #         user.save()
-    #         if self.user.user_partner.first_partern_added == None and self.user.user_partner.last_partern_added == None:
-    #             self.user.user_partner.first_partern_added = user
-    #             self.user.user_partner.last_partern_added = user
-    #         else:
-    #             last_user_partern_added = self.user.user_partner.last_partern_added
-    #             last_user_partern_added.user_partner.next_youngest_brother = user
-    #         partner = Partner(user=user)
-    #         print("ok")
-    #         partner.save()
-    #     return user
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        
+        if commit:
+            
+            print(self.cleaned_data['added_by'])
+            partner = Partner.objects.create(user=user)
+            if self.cleaned_data['added_by'].user_partner.first_partner_added == None and self.cleaned_data['added_by'].user_partner.last_partern_added == None:
+                self.cleaned_data['added_by'].user_partner.first_partern_added = user
+                self.cleaned_data['added_by'].user_partner.last_partern_added = user
+                
+            else:
+                last_user_partern_added = self.cleaned_data['added_by'].user_partner.last_partern_added
+                last_user_partern_added.user_partner.next_youngest_brother = user
+                
+           
+            user.save()
+        return user
 
 
 class UserForm(forms.ModelForm):

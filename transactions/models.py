@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import User
+import uuid
 
 operation_choices = [
     ('DE', 'Deposit'),
@@ -18,9 +19,11 @@ status_choices = [
 ]
 
 class Transaction(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    transaction_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     operation = models.CharField(choices=operation_choices, max_length=2)
     amount = models.PositiveIntegerField()
     payment_method = models.CharField(max_length=4, choices=payment_method_choices)
     status = models.CharField(max_length=10, choices=status_choices)
+    date = models.DateTimeField(auto_now=True)
 

@@ -28,7 +28,8 @@ class User(AbstractUser):
         settings.AUTH_USER_MODEL, 
         on_delete=models.DO_NOTHING, 
         related_name="mentor",
-        null=True
+        null=True,
+        blank=True
     )
     total_amount_xaf = models.PositiveIntegerField(default=0)
     total_referral_amount_xaf = models.PositiveIntegerField(default=0)
