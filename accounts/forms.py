@@ -139,3 +139,9 @@ class LoginForm(forms.Form):
             self.error_messages["invalid_login"],
             code="invalid_login",
         )
+
+
+class UpdatePaymentAccount(forms.Form):
+    tron_acc = forms.CharField(max_length=100)
+    usdt_acc = forms.CharField(max_length=100)
+    

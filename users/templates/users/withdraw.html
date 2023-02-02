@@ -3,140 +3,64 @@
 {% load static %}
 
 {% block content %}
-        {% include 'users/partials/_prices.html' %}
+        <!-- {% include 'users/partials/_prices.html' %} -->
         <div class="deposit">
             <h4 class="main-title">Withdraw Funds</h4>
             <div class="deposit-system pt-0">
-                <h5 class="main-subtitle">01. Choose Payment  System</h5>
-                <div class="text-center deposit-method-slider owl-theme owl-carousel">
-                    <a href="#0" class="deposit-method-item active">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
+
+                <div class="container-fluid deposit-system">
+                    <div class="calculate-wrapper tab">
+
+                        <form action="" method="post" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+
+                        <div class="calculate--area">
+
+                            <div class="calculate-area">
+                                <!-- <div class="calculate-item">
+                                    <h5 class="title" data-serial="01">Select the plan</h5>
+                                    <select class="select-bar">
+                                        <option value="01">120% daily for 50 days</option>
+                                        <option value="02">110% daily for 30 days</option>
+                                        <option value="03">105% daily for 20 days</option>
+                                        <option value="04">102% daily for 10 days</option>
+                                        <option value="05">101% daily for 5 days</option>
+                                    </select>
+                                </div> -->
+                                <div class="calculate-item">
+                                    <h6 class="title">Enter your phone number</h6>
+                                    <input type="number" name="phone_to_send">
+                                </div>
+                                <div class="calculate-item">
+                                    <h6 class="title">Select the Payment method</h6>
+                                    <ul class="tab-menu">
+                                        <li>momo</li>
+                                        <li class="active">om</li>
+                                        <li>tron</li>
+                                        <li>usdt</li>
+                                    </ul>
+                                    <input type="text" id="payment_method" hidden name="payment_method" value="">
+                                </div>
+                                <div class="calculate-item">
+                                    <h6 class="title">Enter the amount</h6>
+                                    <input type="number" value="3500" name="amount">
+                                </div>
                             </div>
-                            <img src="{% static 'assets/images/dashboard/payment/01.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
+                            <div class="tab-area">
+                                
+                                {% for service in services %}
+                                    <div class={% if service.name == 'OM' %}"tab-item active"{% else %}"tab-item"{% endif %}>
+                                        <div class="invest-range-area">
+                                            <button type="submit" class="custom-button">Make Deposit</button>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                    
                             </div>
-                            <img src="{% static 'assets/images/dashboard/payment/02.png' %}" alt="payment">
                         </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/03.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/04.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/05.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/06.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/07.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/01.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/02.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/03.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/04.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/05.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/06.png' %}" alt="payment">
-                        </div>
-                    </a>
-                    <a href="#0" class="deposit-method-item">
-                        <div class="thumb">
-                            <div class="check">
-                                <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                            </div>
-                            <img src="{% static 'assets/images/dashboard/payment/07.png' %}" alt="payment">
-                        </div>
-                    </a>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="deposit-system">
-                <h5 class="main-subtitle">02.Enter the amount of Withdraw:</h5>
-                <form class="make-deposit">
-                    <div class="form-group">
-                        <input type="text" placeholder="Enter your amount" class="make-amount">
-                    </div>
-                    <div class="form-group">
-                        <label for="total-profit">Will be Displayed</label>
-                        <input type="text" readonly value="$180.00" class="readonly">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="custom-button border-0">Withdraw Funds</button>
-                    </div>
-                </form>
-            </div>
         </div>
 {% endblock %}

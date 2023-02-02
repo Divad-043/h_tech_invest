@@ -28,15 +28,15 @@ class User(AdminUser):
                 "fields": (
                     'total_amount_xaf',
                     'total_referral_amount_xaf',
-                    'total_amount_eth',
-                    'total_referral_amount_eth',
                     'total_amount_tron',
                     'total_referral_amount_tron',
                     'total_amount_usdt',
                     'total_referral_amount_usdt',
                     'total_amount_bonus_sub',
                     'total_amount_deposit',
-                    'total_amount_withdraw'
+                    'total_amount_withdraw',
+                    'usdt_account_number',
+                    'tron_account_number'
                 )
             }
         ),

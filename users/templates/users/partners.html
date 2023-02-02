@@ -95,8 +95,8 @@
                                             <img src="{% static 'assets/images/dashboard/earn/usd.png' %}" alt="dashboard-earn">
                                         </div>
                                         <div class="cont">
-                                            <span class="cl-1">0.00</span>
-                                            <span class="cl-4">USD</span>
+                                            <span class="cl-1">{{request.user.total_referral_amount_xaf}}</span>
+                                            <span class="cl-4">XAF</span>
                                         </div>
                                     </li>
                                     <li>
@@ -104,8 +104,8 @@
                                             <img src="{% static 'assets/images/dashboard/earn/btc.png' %}" alt="dashboard-earn">
                                         </div>
                                         <div class="cont">
-                                            <span class="cl-1">0.000000</span>
-                                            <span class="cl-4">BTC</span>
+                                            <span class="cl-1">{{request.user.total_referral_amount_usdt}}</span>
+                                            <span class="cl-4">USDT</span>
                                         </div>
                                     </li>
                                     <li>
@@ -113,8 +113,8 @@
                                             <img src="{% static 'assets/images/dashboard/earn/xrp.png' %}" alt="dashboard-earn">
                                         </div>
                                         <div class="cont">
-                                            <span class="cl-1">0.000000</span>
-                                            <span class="cl-4">XRP</span>
+                                            <span class="cl-1">{{request.user.total_referral_amount_tron}}</span>
+                                            <span class="cl-4">TRON</span>
                                         </div>
                                     </li>
                                     <li>
@@ -122,8 +122,8 @@
                                             <img src="{% static 'assets/images/dashboard/earn/eth.png' %}" alt="dashboard-earn">
                                         </div>
                                         <div class="cont">
-                                            <span class="cl-1">0.000000</span>
-                                            <span class="cl-4">ETH</span>
+                                            <span class="cl-1">{{request.user.total_amount_bonus_sub}}</span>
+                                            <span class="cl-4">XAF (Bonus)</span>
                                         </div>
                                     </li>
                                 </ul>
@@ -229,6 +229,23 @@
             </div>
             <div class="partners">
                 <h4 class="main-title">Your Partners:</h4>
+                <form class="operation-filter" method="get" action="{% url 'users:partners' %}">
+                    <div class="filter-item">
+                        <label>Filter by level:</label>
+                        <div class="select-item">
+                            <select class="select-bar" name="level">
+                                <option value="ALL">ALL</option>
+                                <option value="1" {% if level == 1 %} selected {% endif %}>Level 1</option>
+                                <option value="2" {% if level == 2 %} selected {% endif %}>Level 2</option>
+                                <option value="3" {% if level == 3 %} selected {% endif %}>Level 3</option>
+                                <option value="4" {% if level == 4 %} selected {% endif %}>Level 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <button type="submit" class="custom-button">Filter</button>
+                    </div>
+                </form>
                 <div class="table-wrapper">
                     <table class="transaction-table">
                         <thead>
@@ -243,7 +260,7 @@
                         </thead>
                         <tbody>
                             
-                            {% for partner in partners %}
+                            {% for partner in level_partners %}
                             <tr>
                                 <td>
                                     <i class="far fa-calendar"></i> {{partner.date_joined}}
@@ -373,6 +390,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         
 {% endblock %}

@@ -9,5 +9,6 @@ urlpatterns = [
     path('deposit/', views.deposit, name='deposit'),
     path('withdraw/', views.withdraw, name='withdraw'),
     path('partners/', views.partners, name='partners'),
-    path('settings/', views.settings, name='settings')
+    path('settings/', views.settings, name='settings'),
+    path('filter_by_level/', views.filter_by_level, name='filter_by_level')
 ]

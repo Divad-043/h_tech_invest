@@ -1,3 +1,5 @@
+/* {% load static %} */
+
 /* ---------------------------------------
 
 [Main Stylesheet]
@@ -7129,7 +7131,8 @@ img {
 .site-auth {
     width: 100%;
     min-height: 100vh;
-    background: #003049;
+    /* background: #003049; */
+    background-image: url('/static/assets/images/account-bg.jpg');
     background-size: cover;
     position: relative;
 }

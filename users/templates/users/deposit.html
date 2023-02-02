@@ -3,143 +3,85 @@
 {% load static %}
 
 {% block content %}
-                <div class="deposit-system">
-                    <h5 class="main-subtitle">01. Choose Payment  System</h5>
-                    <div class="text-center deposit-method-slider owl-theme owl-carousel">
-                        <a href="#0" class="deposit-method-item active">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/01.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/02.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/03.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/04.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/05.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/06.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/07.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/01.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/02.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/03.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/04.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/05.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/06.png' %}" alt="payment">
-                            </div>
-                        </a>
-                        <a href="#0" class="deposit-method-item">
-                            <div class="thumb">
-                                <div class="check">
-                                    <img src="{% static 'assets/images/dashboard/payment/check.png' %}" alt="payment">
-                                </div>
-                                <img src="{% static 'assets/images/dashboard/payment/07.png' %}" alt="payment">
-                            </div>
-                        </a>
-                    </div>
+
+            {% if form.errors %}
+                <div class="alert-danger MB-5">{{ form.errors }}</div>
+            {% endif %}
+            {% include 'partials/_messages.html' %} 
+
+<div class="container-fluid deposit-system">
+    <h5 class="main-subtitle mb-5">Make a deposit </h5>
+
+            <!-- {% include 'partials/_messages.html' %} --> 
+    <div class="calculate-wrapper tab">
+        <div class="calculate--area">
+            {% if form.errors %}
+                <div class="alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            
+            {% if forms.errors %}
+                {% for field in form %}
+                    <div class="alert danger">{{ field.errors }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+            <div class="calculate-area">
+
+                <div class="calculate-item">
+                    <h6 class="title">Choose the file of transaction </h6>
+                   <input type="file" class="form-control" name="image">
                 </div>
-                <div class="deposit-system">
-                    <h5 class="main-subtitle">02. Enter the amount of Deposit:</h5>
-                    <form class="make-deposit">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" placeholder="Enter your amount" class="make-amount">
-                        </div>
-                        <div class="form-group">
-                            <input type="file">
-                        </div>
-                        <div class="form-group">
-                            <label for="total-profit">Total Profit</label>
-                            <input type="text" readonly value="$180.00" class="readonly">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="custom-button border-0">Make Deposit</button>
-                        </div>
-                    </form>
+                <div class="calculate-item">
+                    <h6 class="title">Select the Payment method</h6>
+                    <ul class="tab-menu">
+                        <li id="momo">momo</li>
+                        <li id='om' class="active">om</li>
+                        <li id="tron" >tron</li>
+                        <li id="usdt" >usdt</li>
+                    </ul>
+                    <input type="text" id="payment_method" hidden name="payment_method" value="">
                 </div>
+                <div class="calculate-item">
+                    <h6 class="title">Enter the amount</h6>
+                    <input type="number" value="5700" name="amount">
+                </div>
+                <!-- <div class="calculate-item">
+                    <h5 class="title" data-serial="03">Select the file of transaction</h5>
+                    <input type="file">
+                </div> -->
             </div>
+            <div class="tab-area">
+                
+                {% for service in services %}
+                    <div class={% if service.name == 'OM' %}"tab-item active"{% else %}"tab-item"{% endif %}>
+                        <div class="profit-calc">
+                            <div class="item">
+                                <span class="cate">NUMBER </span>
+                                <h4 class="title cl-theme-1">{{service.account_number}}</h4>
+                            </div>
+                            <div class="item">
+                                <span class="cate">NAME </span>
+                                <h4 class="title cl-theme">{{ service.name_account }}</h4>
+                            </div>
+                        </div>
+                        <div class="invest-range-area">
+                            <button type="submit" class="custom-button">Make Deposit</button>
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
         

@@ -10,15 +10,16 @@
                     <img src="{% static 'assets/images/dashboard/earn/01.png' %}" alt="dashboard-earn">
                 </div>
                 <div class="earn-content">
-                    <h6 class="title">Active deposits in the amount of</h6>
+                    <!-- <h6 class="title">Active deposits in the amount of</h6> -->
+                    <h6 class="title">Earned Referral(Benefit)</h6>
                     <ul class="mb--5">
                         <li>
                             <div class="icon">
                                 <img src="{% static 'assets/images/dashboard/earn/usd.png' %}" alt="dashboard-earn">
                             </div>
                             <div class="cont">
-                                <span class="cl-1">0.00</span>
-                                <span class="cl-4">USD</span>
+                                <span class="cl-1">{{request.user.total_referral_amount_xaf}}</span>
+                                <span class="cl-4">XAF</span>
                             </div>
                         </li>
                         <li>
@@ -26,8 +27,8 @@
                                 <img src="{% static 'assets/images/dashboard/earn/btc.png' %}" alt="dashboard-earn">
                             </div>
                             <div class="cont">
-                                <span class="cl-1">0.000000</span>
-                                <span class="cl-4">BTC</span>
+                                <span class="cl-1">{{request.user.total_referral_amount_usdt}}</span>
+                                <span class="cl-4">USDT</span>
                             </div>
                         </li>
                         <li>
@@ -35,8 +36,8 @@
                                 <img src="{% static 'assets/images/dashboard/earn/xrp.png' %}" alt="dashboard-earn">
                             </div>
                             <div class="cont">
-                                <span class="cl-1">0.000000</span>
-                                <span class="cl-4">XRP</span>
+                                <span class="cl-1">{{request.user.total_referral_amount_tron}}</span>
+                                <span class="cl-4">TRON</span>
                             </div>
                         </li>
                         <li>
@@ -44,8 +45,8 @@
                                 <img src="{% static 'assets/images/dashboard/earn/eth.png' %}" alt="dashboard-earn">
                             </div>
                             <div class="cont">
-                                <span class="cl-1">0.000000</span>
-                                <span class="cl-4">ETH</span>
+                                <span class="cl-1">{{request.user.total_amount_bonus_sub}}</span>
+                                <span class="cl-4">Bonus</span>
                             </div>
                         </li>
                     </ul>
@@ -86,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-xl-4">
+        <!-- <div class="col-lg-6 col-xl-4">
             <div class="earn-item mb-30">
                 <div class="earn-thumb">
                     <img src="{% static 'assets/images/dashboard/earn/03.png' %}" alt="dashboard-earn">
@@ -181,8 +182,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-6 col-xl-4">
+        </div> -->
+        <!-- <div class="col-lg-6 col-xl-4">
             <div class="earn-item mb-30">
                 <div class="earn-thumb">
                     <img src="{% static 'assets/images/dashboard/earn/05.png' %}" alt="dashboard-earn">
@@ -229,7 +230,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- <div class="col-lg-6">
             <div class="earn-item small-thumbs mb-30">
                 <div class="earn-thumb">

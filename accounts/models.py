@@ -33,8 +33,8 @@ class User(AbstractUser):
     )
     total_amount_xaf = models.PositiveIntegerField(default=0)
     total_referral_amount_xaf = models.PositiveIntegerField(default=0)
-    total_amount_eth = models.PositiveIntegerField(default=0)
-    total_referral_amount_eth = models.PositiveIntegerField(default=0)
+    #total_amount_eth = models.PositiveIntegerField(default=0)
+    #total_referral_amount_eth = models.PositiveIntegerField(default=0)
     total_amount_tron = models.PositiveIntegerField(default=0)
     total_referral_amount_tron = models.PositiveIntegerField(default=0)
     total_amount_usdt = models.PositiveIntegerField(default=0)
@@ -42,6 +42,9 @@ class User(AbstractUser):
     total_amount_bonus_sub = models.PositiveIntegerField(default=500)
     total_amount_deposit = models.PositiveIntegerField(default=0)
     total_amount_withdraw = models.PositiveIntegerField(default=0)
+
+    usdt_account_number = models.CharField(max_length=100, null=True, blank=True)
+    tron_account_number = models.CharField(max_length=100, null=True, blank=True)
 
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone', 'country']
     USERNAME_FIELD = 'email'
@@ -106,5 +109,33 @@ class Partner(models.Model):
             list_of_partners.append(current_partner)
             current_partner = current_partner.user_partner.next_youngest_brother
         return list_of_partners
+
+    def getAllUsersByLevel(self, level):
+        gen_ref = None
+        if level == 1:
+            gen_ref = self.first_partern_added if self.first_partern_added else None
+        elif level == 2:
+            first = self.first_partern_added if self.first_partern_added else None
+            gen_ref = first.user_partner.first_partern_added if first.user_partner.first_partern_added else None
+        elif level == 3:
+            first = self.first_partern_added if self.first_partern_added else None
+            second = first.user_partner.first_partern_added if first.user_partner.first_partern_added else None
+            gen_ref = second.user_partner.first_partern_added if second.user_partner.first_partern_added else None
+        elif level == 4:
+            first = self.first_partern_added if self.first_partern_added else None
+            second = first.user_partner.first_partern_added if first.user_partner.first_partern_added else None
+            third = second.user_partner.first_partern_added if second.user_partner.first_partern_added else None
+            gen_ref = third.user_partner.first_partern_added if third.user_partner.first_partern_added else None
+        else:
+            pass
+
+        list_of_partners = []
+        current = gen_ref
+        while current:
+            list_of_partners.append(current)
+            current = current.user_partner.next_youngest_brother
+        return list_of_partners
+
+        
 
 

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'users',
     'transactions',
+    'services',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ULR = 'media/'
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

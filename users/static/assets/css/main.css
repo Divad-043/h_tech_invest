@@ -3916,7 +3916,7 @@ div[class*="ball"] img {
 
 .calculate-wrapper .calculate-area .calculate-item .title {
     text-transform: uppercase;
-    margin-bottom: 39px;
+    margin-bottom: 25px;
     position: relative;
 }
 
@@ -4107,15 +4107,18 @@ body *::-webkit-scrollbar-track {
 }
 
 .cl-theme {
-    color: #f55c25;
+    /* color: #f55c25; */
+    color: #00cca2;
 }
 
 .cl-theme-1 {
-    color: #324fb0;
+    /* color: #324fb0; */
+    color: #00cca2;
 }
 
 .cl-theme {
-    color: #f55c25;
+    /* color: #f55c25; */
+    color: #00cca2;
 }
 
 /*Range Slider Starts Here*/
@@ -5261,17 +5264,17 @@ body *::-webkit-scrollbar-track {
     top: 0;
 }
 
-.dashboard-section .side-header .side-logo {
+/* .dashboard-section .side-header .side-logo {
     width: 160px;
-    margin-bottom: 40px;
-}
+    margin-bottom: 10px;
+} */
 
 .dashboard-section .side-header .side-logo a {
     display: block;
 }
 
 .dashboard-section .side-header .side-logo a img {
-    width: 100%;
+    width: 50%;
 }
 
 @media (min-width: 992px) {

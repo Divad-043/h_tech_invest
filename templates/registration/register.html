@@ -8,12 +8,12 @@
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-md-12">
                     <div class="auth-content">
-                        <div class="logo">
+                        <div class="logo text-center">
                             <!-- <a href="index.html"><img src="{% static 'accounts/assets/global/images/W3m9vDkJrQRDf7TOPqK4.png' %}" alt=""/></a> -->
-                            <a href="index.html" style="text-decoration:none ;"><img src="{% static 'assets/global/images/ressources.png' %}" alt=""/>   H_TEM_WINNER</a>
+                            <a href="" style="text-decoration:none ;"><img src="{% static 'assets/images/logo/htech.png' %}" alt=""/></a>
                         </div>
                         <div class="title">
-                            <h2> 💪 Create an account</h2>
+                            <h2> Create an account</h2>
 <!--                            <p>Register to continue with H_TEM_WINNER</p>-->
                         </div>
 
@@ -41,7 +41,7 @@
                                             type="text"
                                             placeholder="Your First Name"
                                             name="first_name"
-                                            value=""
+                                            value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}"
                                             required
                                         />
                                     </div>
@@ -60,7 +60,7 @@
                                             placeholder="Your Last Name"
                                             name="last_name"
                                             {% if form.first_name.value %}
-                                            value="{{first_name.value}}"
+                                            value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"
                                             {% endif %}
                                             required
                                         />
@@ -74,7 +74,7 @@
                                             class="box-input"
                                             type="email"
                                             name="email"
-                                            value=""
+                                            value="{% if form.email.value %}{{form.email.value}}{% endif %}"
                                             placeholder="Enter Your Email Address"
                                             required
                                         />
@@ -90,7 +90,7 @@
                                             type="text"
                                             placeholder="Enter Your User Name"
                                             name="username"
-                                            value=""
+                                            value="{% if form.username.value %}{{form.username.value}}{% endif %}"
                                             required
                                         />
                                     </div>
@@ -848,6 +848,7 @@
                                                 value=""
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
+                                                required
                                             />
                                         </div>
                                     </div>
