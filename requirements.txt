@@ -73,3 +73,4 @@ sqlparse==0.4.3
 systemd-python==235
 Tempita==0.5.2
 urllib3==1.26.12
+whitenoise==6.3.0
