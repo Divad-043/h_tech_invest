@@ -1,11 +1,11 @@
 {% load static %}
 
 <div class="row justify-content-center mt--85">
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-2">
         <div class="dashboard-item">
             <div class="dashboard-inner">
                 <div class="cont">
-                    <span class="title">Balance</span>
+                    <span class="title">Total Deposit</span>
                     <h5 class="amount">{{request.user.total_amount_xaf}} XAF</h5>
                 </div>
                 <div class="thumb">
@@ -14,12 +14,12 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-2">
         <div class="dashboard-item">
             <div class="dashboard-inner">
                 <div class="cont">
                     <span class="title">Balance</span>
-                    <h5 class="amount">{{request.user.total_amount_eth}} ESDT</h5>
+                    <h5 class="amount">{{request.user.total_amount_eth}} USDT</h5>
                 </div>
                 <div class="thumb">
                     <img src="{% static 'assets/images/dashboard/dashboard2.png' %}" alt="dasboard">
@@ -27,12 +27,12 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-2">
         <div class="dashboard-item">
             <div class="dashboard-inner">
                 <div class="cont">
-                    <span class="title">Balance</span>
-                    <h5 class="amount">{{request.user.total_amount_eth}} ETH</h5>
+                    <span class="title">Bonus Balance</span>
+                    <h5 class="amount">{{request.user.total_amount_bonus_sub}} XAF</h5>
                 </div>
                 <div class="thumb">
                     <img src="{% static 'assets/images/dashboard/dashboard3.png' %}" alt="dasboard">
@@ -40,12 +40,26 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-2">
         <div class="dashboard-item">
             <div class="dashboard-inner">
                 <div class="cont">
                     <span class="title">Balance</span>
                     <h5 class="amount">{{request.user.total_amount_tron}} TRON</h5>
+                </div>
+                <div class="thumb">
+                    <img src="{% static 'assets/images/dashboard/dashboard4.png' %}" alt="dasboard">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-lg-2">
+        <div class="dashboard-item">
+            <div class="dashboard-inner">
+                <div class="cont">
+                    <span class="title">Total withdraw</span>
+                    <h5 class="amount">{{request.user.total_amount_withdraw}} XAF</h5>
                 </div>
                 <div class="thumb">
                     <img src="{% static 'assets/images/dashboard/dashboard4.png' %}" alt="dasboard">

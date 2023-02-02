@@ -14,12 +14,12 @@
             </div>
             <div class="mobile-header-content d-lg-flex flex-wrap justify-content-lg-between align-items-center">
                 <ul class="support-area">
-                    <li>
+                    <!-- <li>
                         <a href="#0"><i class="flaticon-support"></i>Support</a>
                     </li>
                     <li>
                         <a href="Mailto:info@hteminvest.com"><i class="flaticon-email"></i><span class="__cf_email__" data-cfemail="fe97909891be9687978e929f909ad09d9193">[email&#160;protected]</span> </a>
-                    </li>
+                    </li> -->
                     <li>
                         <i class="flaticon-globe"></i>
                         <div class="select-area">
@@ -32,12 +32,12 @@
                     </li>
                 </ul>
                 <div class="dashboard-header-right d-flex flex-wrap justify-content-center justify-content-sm-between justify-content-lg-end align-items-center">
-                    <form class="dashboard-header-search mr-sm-4">
+                    <!-- <form class="dashboard-header-search mr-sm-4">
                         <label for="search"><i class="flaticon-magnifying-glass"></i></label>
                         <input type="text" placeholder="Search...">
-                    </form>
+                    </form> -->
                     <ul class="dashboard-right-menus">
-                        <li>
+                        <!-- <li>
                             <a href="#0">
                                 <i class="flaticon-email-1"></i>
                                 <span class="number bg-theme-2">4</span>
@@ -150,7 +150,7 @@
                                     <a href="#0" class="view-all">View All</a>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#0" class="author">
                                 <div class="thumb">
@@ -169,8 +169,8 @@
                                     <div class="thumb">
                                         <img src="{% static 'assets/images/dashboard/author.png' %}" alt="dashboard">
                                     </div>
-                                    <h6 class="title">John Doe</h6>
-                                    <a href="#mailto:johndoe@gmail.com"><span class="__cf_email__" data-cfemail="c78da8afa9a3a8a287a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a>
+                                    <h6 class="title">{{request.user.get_full_name}}</h6>
+                                    <!-- <a href="#mailto:johndoe@gmail.com"><span class="__cf_email__" data-cfemail="c78da8afa9a3a8a287a0aaa6aeabe9a4a8aa">[email&#160;protected]</span></a> -->
                                 </div>
                                 <div class="author-body">
                                     <ul>
