@@ -1,0 +1,1 @@
+web: gunicorn 'h_tem_invest.wsgi'
