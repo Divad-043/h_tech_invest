@@ -283,95 +283,28 @@
                             </tr>
                             {% endfor %}
                                 
-                            
-                            <!-- <tr>
-                                <td>
-                                    <i class="far fa-calendar"></i> Feb 14, 2020 20:53
-                                </td>
-                                <td>
-                                    Level2
-                                </td>
-                                <td>
-                                    Austin 984
-                                </td>
-                                <td>
-                                    <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="350c0d01755258545c591b565a58">[email&#160;protected]</span></a>
-                                </td> -->
-                                <!-- <td>
-                                    <img src="{% static 'assets/images/dashboard/earn/dash2.png' %}" alt="dashboard-earn"> BTC
-                                </td> -->
-                                <!-- <td>
-                                    0.000591
-                                </td> -->
-                            <!-- </tr>
-                            <tr>
-                                <td>
-                                    <i class="far fa-calendar"></i> Feb 14, 2020 20:53
-                                </td>
-                                <td>
-                                    Level3
-                                </td>
-                                <td>
-                                    Austin 984
-                                </td>
-                                <td>
-                                    <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="655c5d51250208040c094b060a08">[email&#160;protected]</span></a>
-                                </td> -->
-                                <!-- <td>
-                                    <img src="{% static 'assets/images/dashboard/earn/eth3.png' %}" alt="dashboard-earn"> BTC
-                                </td> -->
-                                <!-- <td>
-                                    0.000591
-                                </td> -->
-                            <!-- </tr>
-                            <tr>
-                                <td>
-                                    <i class="far fa-calendar"></i> Feb 14, 2020 20:53
-                                </td>
-                                <td>
-                                    Level4
-                                </td>
-                                <td>
-                                    Austin 984
-                                </td>
-                                <td>
-                                    <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="370e0f0377505a565e5b1954585a">[email&#160;protected]</span></a>
-                                </td> -->
-                                <!-- <td>
-                                    <img src="{% static 'assets/images/dashboard/earn/eth2.png' %}" alt="dashboard-earn"> BTC
-                                </td> -->
-                                <!-- <td>
-                                    0.000591
-                                </td> -->
-                            <!-- </tr>
-                            <tr>
-                                <td>
-                                    <i class="far fa-calendar"></i> Feb 14, 2020 20:53
-                                </td>
-                                <td>
-                                    Level5
-                                </td>
-                                <td>
-                                    Austin 984
-                                </td>
-                                <td>
-                                    <a href="Mailto:dfdfdsafasdfasd@gmail.com">Austin <span class="__cf_email__" data-cfemail="1a23222e5a7d777b737634797577">[email&#160;protected]</span></a>
-                                </td> -->
-                                <!-- <td>
-                                    <img src="{% static 'assets/images/dashboard/earn/btc2.png' %}" alt="dashboard-earn"> BTC
-                                </td> -->
-                                <!-- <td>
-                                    0.000591
-                                </td> -->
-                            <!-- </tr> -->
                         </tbody>
                     </table>
                 </div>
                 <div class="pagination-area d-flex flex-wrap justify-content-between align-items-center">
                     <div class="pagination-cont">
-                        Showing 1 to 5 of 22 entries
+                        Showing 1 to 5 of {{level_partners|length}} entries
                     </div>
+                    
+                    <!-- <ul class="pagination">
+                        {% for elt in level_partners.paginator.page_range  %}
+                        
+                        {% endfor %}
+                    </ul> -->
+
+                    
+                        
                     <ul class="pagination">
+                        
+                        {% if level_partners.has_previous %}
+                            
+                        {% endif %}
+                            
                         <li>
                             <a href="#0"><i class="fas fa-angle-left"></i></a>
                         </li>

@@ -7,6 +7,7 @@ from transactions.models import Transaction
 from transactions.forms import TransactionForm
 from services.models import Service
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 page = ""
 
@@ -82,11 +83,11 @@ def withdraw(request):
         print(data)
         form = TransactionForm(data)
         if form.is_valid():
-            print('oui')
+            print('ok')
             transaction = form.save(commit=False)
             transaction.save()
             messages.success(request, "Withdraw success")
-            return redirect('users:deposit')
+            return redirect('users:withdraw')
     return render(request, 'users/withdraw.html', {'page': 'withdraw', 'services': services, 'form': form})
 
 
@@ -94,6 +95,7 @@ def withdraw(request):
 def partners(request):
     #level = request.GET['level'] if request.GET['level'] else ""
     level = "ALL"
+    page_number = ""
     try:
         level = request.GET['level']
         level = int(level)
@@ -115,6 +117,11 @@ def partners(request):
     fisrt_level_user = User.objects.filter(added_by=request.user).count()
     # print(number_of_partners)
     print(list_of_partner)
+
+    if page_number:
+        paginator = Paginator(level_partners, 5)
+        level_partners = paginator.get_page(page_number)
+
     context = {
         'page': 'partners', 
         'partners': list_of_partner,

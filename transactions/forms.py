@@ -12,14 +12,18 @@ class TransactionForm(forms.ModelForm):
     def clean_amount(self):
         # payment_method = self.cleaned_data['payment_method']
         user = self.cleaned_data['user']
-        current_amount = user.total_amount_xaf
+        # current_amount = user.total_amount_xaf
+        current_amount = user.total_referral_amount_xaf
         data = self.cleaned_data['amount']
         operation = self.cleaned_data['operation']
         if operation == 'WI':
             if data < 3500:
                 raise ValidationError('The amount must be greater or egal to 3500')
             else:
-                data = data - (16*data)/100
+                if current_amount < data:
+                    raise ValidationError('Error')
+                else:
+                    data = data - (16*data)/100
         elif operation == 'DE':
             # if payment_method == 'OM' or payment_method == 'MO':
             if data < 5700:
@@ -63,8 +67,8 @@ class TransactionForm(forms.ModelForm):
         if operation == 'WI':
             user.total_referral_amount_xaf = current_amount - self.cleaned_data['amount']
             user.total_amount_withdraw = user.total_amount_withdraw + self.cleaned_data['amount']
-        else:
-            user.total_amount_xaf = current_amount + self.cleaned_data['amount']
+        # else:
+        #     user.total_amount_xaf = current_amount + self.cleaned_data['amount']
         user.save()
         if commit:
             transaction.save()

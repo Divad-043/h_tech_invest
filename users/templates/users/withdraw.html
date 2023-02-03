@@ -3,6 +3,10 @@
 {% load static %}
 
 {% block content %}
+            {% if form.errors %}
+                <div class="alert-danger MB-5">{{ form.errors }}</div>
+            {% endif %}
+            {% include 'partials/_messages.html' %} 
         <!-- {% include 'users/partials/_prices.html' %} -->
         <div class="deposit">
             <h4 class="main-title">Withdraw Funds</h4>
@@ -11,23 +15,13 @@
                 <div class="container-fluid deposit-system">
                     <div class="calculate-wrapper tab">
 
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="" method="post">
 
                             {% csrf_token %}
 
                         <div class="calculate--area">
 
                             <div class="calculate-area">
-                                <!-- <div class="calculate-item">
-                                    <h5 class="title" data-serial="01">Select the plan</h5>
-                                    <select class="select-bar">
-                                        <option value="01">120% daily for 50 days</option>
-                                        <option value="02">110% daily for 30 days</option>
-                                        <option value="03">105% daily for 20 days</option>
-                                        <option value="04">102% daily for 10 days</option>
-                                        <option value="05">101% daily for 5 days</option>
-                                    </select>
-                                </div> -->
                                 <div class="calculate-item">
                                     <h6 class="title">Enter your phone number</h6>
                                     <input type="number" name="phone_to_send">
@@ -35,10 +29,10 @@
                                 <div class="calculate-item">
                                     <h6 class="title">Select the Payment method</h6>
                                     <ul class="tab-menu">
-                                        <li>momo</li>
-                                        <li class="active">om</li>
-                                        <li>tron</li>
-                                        <li>usdt</li>
+                                        <li id="momo">momo</li>
+                                        <li id="om" class="active">om</li>
+                                        <li id="tron">tron</li>
+                                        <li id="usdt">usdt</li>
                                     </ul>
                                     <input type="text" id="payment_method" hidden name="payment_method" value="">
                                 </div>
